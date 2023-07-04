@@ -76,3 +76,5 @@ gem "cssbundling-rails", "~> 1.2"
 gem "jsbundling-rails", "~> 1.1"
 
 gem "devise", "~> 4.9"
+
+gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
