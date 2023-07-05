@@ -10,6 +10,10 @@
       </div>
 
       <div class="form-group p-2">
+        <%= f.time_zone_select :time_zone %>
+      </div>      
+
+      <div class="form-group p-2">
         <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
       </div>
 
