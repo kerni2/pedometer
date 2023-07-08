@@ -8,3 +8,9 @@ confirmed_user:
   email: confirmed_user@mail.com
   confirmed_at: <%= Time.zone.now %>
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+confirmed_user_with_time_zone:
+  email: confirmed_user_with_time_zone@mail.com
+  time_zone: 'Berlin'
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
