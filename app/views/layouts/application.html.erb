@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pedometer</title>
+    <% if content_for?(:title) %>
+      <title><%= yield :title %> | Pedometer</title>
+    <% else %>
+      <title>Pedometer</title>
+    <% end %>   
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
