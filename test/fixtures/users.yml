@@ -14,3 +14,8 @@ confirmed_user_with_time_zone:
   time_zone: 'Berlin'
   confirmed_at: <%= Time.zone.now %>
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+confirmed_user_with_activities:
+  email: confirmed_user_with_activities@mail.com
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
