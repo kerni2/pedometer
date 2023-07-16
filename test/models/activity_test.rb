@@ -12,6 +12,19 @@ class ActivityTest < ActiveSupport::TestCase
 
   test "should have date" do
     @activity.date = nil
-    @activity.save
+    assert_not @activity.valid?
   end
+
+  test "duration should be positive" do
+    @activity.duration = -1
+    assert_not @activity.valid?
+
+    @activity.duration = 0
+    assert_not @activity.valid?    
+  end
+
+  test "distance should be positive" do
+    @activity.distance = -1
+    assert_not @activity.valid?
+  end 
 end
