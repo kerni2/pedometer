@@ -43,4 +43,43 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = nil
     assert_not @activity.valid?
   end
+
+  test "should calculate calculated_pace when unit is miles" do
+    @activity.distance = 10
+    @activity.unit = :miles
+    @activity.duration = 3600
+    @activity.save
+
+    assert_equal 360, @activity.reload.calculated_pace
+  end
+
+  test "should calculate calculated_pace when unit is kilometers" do
+    @activity.distance = 10
+    @activity.unit = :kilometers
+    @activity.duration = 3600
+    @activity.save
+    pace = @activity.duration / ( @activity.distance * 0.6213712 )
+
+    assert_equal pace, @activity.reload.calculated_pace
+  end
+  
+  test "should calculate calculated_pace when unit is meters" do
+    @activity.distance = 10
+    @activity.unit = :meters
+    @activity.duration = 3600
+    @activity.save
+    pace = @activity.duration / ( @activity.distance * 0.0006213711985 )
+
+    assert_equal pace, @activity.reload.calculated_pace
+  end
+
+  test "should calculate calculated_pace when unit is yards" do
+    @activity.distance = 10
+    @activity.unit = :yards
+    @activity.duration = 3600
+    @activity.save
+    pace = @activity.duration / ( @activity.distance * 0.0005681818239083977 )
+
+    assert_equal pace, @activity.reload.calculated_pace
+  end
 end
