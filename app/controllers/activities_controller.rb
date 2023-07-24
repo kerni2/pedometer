@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to @activity, notice: "Created Activity"
     else
-      render "new"
+      render "new", status: :unprocessable_entity
     end
   end
 
