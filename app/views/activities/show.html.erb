@@ -1,4 +1,5 @@
 <h2>Activity</h2>
+
 <p>
   <strong>Date:</strong>
   <%= @activity.date %>
@@ -21,7 +22,12 @@
 
 <p>
   <strong>Duration:</strong>
-  <%= @activity.duration %>
+  <%= format_duration(@activity.duration) if @activity.duration.present? %>
+</p>
+
+<p>
+  <strong>Pace:</strong>
+  <%= format_duration(@activity.calculated_pace) if @activity.calculated_pace.present? %>
 </p>
 
 <p>
