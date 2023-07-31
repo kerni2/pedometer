@@ -3,6 +3,10 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update]
   before_action :calculate_duration, only: [:create]
 
+  def index
+    @activities = current_user.activities
+  end
+
   def show
   end
   

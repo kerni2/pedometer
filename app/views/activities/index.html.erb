@@ -1,0 +1,33 @@
+<h2>Activities</h2>
+
+
+<div class="table-responsive" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><strong>Date:</strong></th>
+        <th scope="col"><strong>Category:</strong></th>
+        <th scope="col"><strong>Difficulty:</strong></th>
+        <th scope="col"><strong>Unit:</strong></th>
+        <th scope="col"><strong>Duration:</strong></th>
+        <th scope="col"><strong>Pace:</strong></th>
+        <th scope="col"><strong>Distance:</strong></th>
+        <th scope="col"><strong>Description:</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @activities.each do |activity| %>
+      <tr>
+        <th><%= activity.date %></th>
+        <th><%= activity.category %></th>
+        <th><%= activity.difficulty %></th>
+        <th><%= activity.unit %></th>
+        <th><%= format_duration(activity.duration) if activity.duration.present? %></th>
+        <th><%= format_duration(activity.calculated_pace) if activity.calculated_pace.present? %></th>
+        <th><%= activity.distance %></th>
+        <th><%= activity.description %></th>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
+</div>
