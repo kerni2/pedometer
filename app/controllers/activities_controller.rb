@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_activity, only: [:show, :edit, :update]
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :calculate_duration, only: [:create]
 
   def index
@@ -32,7 +32,14 @@ class ActivitiesController < ApplicationController
     else
       render "edit", status: :unprocessable_entity
     end
-  end 
+  end
+
+  def destroy
+    @activity.destroy
+    respond_to do |format|
+      format.html { redirect_to activities_path, notice: "Activity Deleted" }
+    end
+  end
 
   private
 
