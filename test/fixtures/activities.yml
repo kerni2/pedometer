@@ -10,3 +10,14 @@ confirmed_user_activity_<%= i %>:
   unit: miles
   difficulty: easy
 <% end %>
+
+<% 1.upto(60) do |i| %>
+another_confirmed_user_activity_<%= i %>:
+  date: <%= i.days.ago %>
+  user: another_confirmed_user_with_activities
+  duration: <%= rand(1800..7200) %>
+  distance: <%= rand(1..20) %>
+  calculated_pace: <%= rand(360..600) %>
+  unit: miles
+  difficulty: easy
+<% end %>
