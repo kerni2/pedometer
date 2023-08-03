@@ -8,6 +8,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    authorize @activity
   end
   
   def new
@@ -24,9 +25,11 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
+    authorize @activity
   end
 
   def update
+    authorize @activity
     if @activity.update(activity_params)
       redirect_to @activity, notice: "Edited Activity"
     else
@@ -35,6 +38,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
+    authorize @activity
     @activity.destroy
     respond_to do |format|
       format.html { redirect_to activities_path, notice: "Activity Deleted" }
