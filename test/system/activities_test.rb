@@ -46,4 +46,13 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     assert_selector "p", text: "Activity Deleted"
   end
+
+  test "should render error" do
+    sign_in @user
+
+    visit new_activity_path
+    click_button "Create Activity"
+
+    assert_selector "#form-error"
+  end
 end
