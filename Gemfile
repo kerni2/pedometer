@@ -79,3 +79,4 @@ gem "devise", "~> 4.9"
 
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem "pundit", "~> 2.3"
+gem 'pagy', '~> 6.0' # omit patch digit

@@ -1,35 +1,41 @@
 <h2>Activities</h2>
+<% unless @activities.empty? %>
 
-
-<div class="table-responsive" >
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"><strong>Date:</strong></th>
-        <th scope="col"><strong>Category:</strong></th>
-        <th scope="col"><strong>Difficulty:</strong></th>
-        <th scope="col"><strong>Distance:</strong></th>
-        <th scope="col"><strong>Unit:</strong></th>
-        <th scope="col"><strong>Duration:</strong></th>
-        <th scope="col"><strong>Pace:</strong></th>
-        <th scope="col"><strong>Description:</strong></th>
-        <th scope="col"><strong>Actions:</strong></th>
+  <div class="table-responsive" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><strong>Date:</strong></th>
+          <th scope="col"><strong>Category:</strong></th>
+          <th scope="col"><strong>Difficulty:</strong></th>
+          <th scope="col"><strong>Distance:</strong></th>
+          <th scope="col"><strong>Unit:</strong></th>
+          <th scope="col"><strong>Duration:</strong></th>
+          <th scope="col"><strong>Pace:</strong></th>
+          <th scope="col"><strong>Description:</strong></th>
+          <th scope="col"><strong>Actions:</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activities.each do |activity| %>
+        <tr>
+          <th><%= activity.date.strftime("%D %r") %></th>
+          <th><%= activity.category %></th>
+          <th><%= activity.difficulty %></th>
+          <th><%= activity.distance %></th>
+          <th><%= activity.unit %></th>
+          <th><%= format_duration(activity.duration) if activity.duration.present? %></th>
+          <th><%= format_duration(activity.calculated_pace) if activity.calculated_pace.present? %></th>
+          <th><%= activity.description %></th>
+          <th><%= link_to "Edit", edit_activity_path(activity) %></th>
+      <% end %>
       </tr>
-    </thead>
-    <tbody>
-      <% @activities.each do |activity| %>
-      <tr>
-        <th><%= activity.date.strftime("%D %r") %></th>
-        <th><%= activity.category %></th>
-        <th><%= activity.difficulty %></th>
-        <th><%= activity.distance %></th>
-        <th><%= activity.unit %></th>
-        <th><%= format_duration(activity.duration) if activity.duration.present? %></th>
-        <th><%= format_duration(activity.calculated_pace) if activity.calculated_pace.present? %></th>
-        <th><%= activity.description %></th>
-        <th><%= link_to "Edit", edit_activity_path(activity) %></th>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
-</div>
+    </tbody>
+  </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+<% else %>
+  <p><%= link_to "Add your first activity", new_activity_path %></p>
+<% end %>
