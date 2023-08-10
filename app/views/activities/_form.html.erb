@@ -1,69 +1,75 @@
-<%= form_with model: @activity, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.datetime_field :date, class: "form-control" %>
+<%= form_with model: @activity, local: true, class: "shadow-sm p-3 rounded-sm border md-5" do |f| %>
+  <div class="form-row">
+    <div class="col-auto form-group">
+      <%= f.label :date %>
+      <%= f.datetime_field :date, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:date).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="col-auto  form-group">
+      <%= f.label :category %>
+      <%= f.collection_select :category, Activity.categories.keys.map { |activity| [activity, activity.humanize] }, :first, :second, {}, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:category).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="col-auto form-group">
+      <%= f.label :difficulty %>
+      <%= f.collection_select :difficulty, Activity.difficulties.keys.map { |activity| [activity, activity.humanize] }, :first, :second, {}, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:difficulty).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <% @activity.errors.full_messages_for(:date).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :category %>
-    <%= f.collection_select :category, Activity.categories.keys.map { |activity| [activity, activity.humanize] }, :first, :second, {}, class: "form-control" %>
-  </div>
-  <div>
-    <% @activity.errors.full_messages_for(:category).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :difficulty %>
-    <%= f.collection_select :difficulty, Activity.difficulties.keys.map { |activity| [activity, activity.humanize] }, :first, :second, {}, class: "form-control" %>
-  </div>
-  <div>
-    <% @activity.errors.full_messages_for(:difficulty).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :unit %>
-    <%= f.collection_select :unit, Activity.units.keys.map { |activity| [activity, activity.humanize] }, :first, :second, { prompt: true }, class: "form-control" %>
-  </div>
-  <div>
-    <% @activity.errors.full_messages_for(:unit).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :hours %>
-    <%= f.number_field :hours, min: 0, step: 1, class: "form-control" %>
-    <%= f.label :minutes %>
-    <%= f.number_field :minutes, min: 0, max: 59, step: 1, class: "form-control" %>
-    <%= f.label :seconds %>
-    <%= f.number_field :seconds, min: 0, max: 59, step: 1, class: "form-control" %>
-  </div>
-  <div>
-    <% @activity.errors.full_messages_for(:duration).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :distance %>
-    <%= f.number_field :distance, step: 0.01, class: "form-control" %>
-  </div>
-  <div>
-    <% @activity.errors.full_messages_for(:distance).each do |message| %>
-      <div id="form-error" class="alert alert-danger"><%= message %></div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.rich_text_area :description, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= button_to f.submit %>
-  </div>
-  <div class="form-group">
-    <%= button_to "Destroy", @activity, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+  <div class="form-row">
+    <div class="col-auto form-group">
+      <%= f.label :unit %>
+      <%= f.collection_select :unit, Activity.units.keys.map { |activity| [activity, activity.humanize] }, :first, :second, { prompt: true }, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:unit).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="col-auto form-group">
+      <%= f.label :hours %>
+      <%= f.number_field :hours, min: 0, step: 1, class: "form-control" %>
+      <%= f.label :minutes %>
+      <%= f.number_field :minutes, min: 0, max: 59, step: 1, class: "form-control" %>
+      <%= f.label :seconds %>
+      <%= f.number_field :seconds, min: 0, max: 59, step: 1, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:duration).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="col-auto form-group">
+      <%= f.label :distance %>
+      <%= f.number_field :distance, step: 0.01, class: "form-control" %>
+    </div>
+    <div class="col-auto form-group">
+      <% @activity.errors.full_messages_for(:distance).each do |message| %>
+        <div id="form-error" class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.rich_text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <div class="btn-group" role="group" aria-label="Form Actions">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= button_to "Reset", activities_path, class: "btn btn-outline-secondary" %>
+        <%= button_to "Destroy", @activity, method: :delete, class: "btn btn-outline-danger", data: {turbo_confirm: "Are you sure?"} if @activity.persisted? %>
+      </div>
+    </div>
   </div>
 <% end %>
