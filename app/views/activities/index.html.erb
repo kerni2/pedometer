@@ -27,7 +27,12 @@
           <th><%= format_duration(activity.duration) if activity.duration.present? %></th>
           <th><%= format_duration(activity.calculated_pace) if activity.calculated_pace.present? %></th>
           <th><%= activity.description %></th>
-          <th><%= link_to "Edit", edit_activity_path(activity) %></th>
+          <th>
+            <div class="btn-group">
+              <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-sm btn-outline-primary" %>
+              <%= link_to "View", activity_path(activity), class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          </th>
       <% end %>
       </tr>
     </tbody>
