@@ -20,8 +20,8 @@
         <% @activities.each do |activity| %>
         <tr>
           <th><%= activity.date.strftime("%D %r") %></th>
-          <th><%= activity.category %></th>
-          <th><%= activity.difficulty %></th>
+          <th><%= activity.category.humanize %></th>
+          <th><%= activity.difficulty.humanize %></th>
           <th><%= activity.distance %></th>
           <th><%= activity.unit %></th>
           <th><%= format_duration(activity.duration) if activity.duration.present? %></th>

@@ -67,6 +67,8 @@
     <div class="form-group">
       <div class="btn-group" role="group" aria-label="Form Actions">
         <%= f.submit class: "btn btn-primary" %>
+      </div>
+      <div class="btn-group">
         <%= button_to "Reset", activities_path, class: "btn btn-outline-secondary" %>
         <%= button_to "Destroy", @activity, method: :delete, class: "btn btn-outline-danger", data: {turbo_confirm: "Are you sure?"} if @activity.persisted? %>
       </div>
