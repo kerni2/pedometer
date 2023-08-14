@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :activities, dependent: :destroy
+  has_many :totals, dependent: :destroy
 end
