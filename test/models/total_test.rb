@@ -19,5 +19,12 @@ class TotalTest < ActiveSupport::TestCase
     @total.range = nil
     assert_not @total.valid?
   end
+
+  test "should be unique across user, starting_on and range" do
+    @total.save
+    @duplicate_total = @user.totals.build(starting_on: Time.zone.now, range: "week")
+
+    assert_not @duplicate_total.valid?
+  end
 end
 

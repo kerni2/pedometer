@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_065843) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_15_165723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_065843) do
     t.integer "range", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["range"], name: "index_totals_on_range"
+    t.index ["starting_on"], name: "index_totals_on_starting_on"
     t.index ["user_id"], name: "index_totals_on_user_id"
   end
 
