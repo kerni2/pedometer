@@ -119,15 +119,24 @@ class ActivityTest < ActiveSupport::TestCase
     year = Time.zone.now.to_date.cwyear
     starting_on = Date.commercial(year, week)
 
-
     7.times do |i|
       @user.activities.create(date: starting_on + i.days, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
     end
 
-    
     @total = @user.totals.last
 
     assert_equal 25200, @total.duration
     assert_equal 70, @total.distance
+  end
+
+  test "should update total record when activity is destroyed" do
+    @user = users(:confirmed_user)
+    @activity_one = @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @activity_two = @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @total = @user.totals.last
+
+    @activity_one.destroy
+    assert_equal 3600, @total.reload.duration
+    assert_equal 10, @total.reload.distance
   end
 end
