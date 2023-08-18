@@ -9,7 +9,7 @@ class Activity < ApplicationRecord
 
   before_validation :calculate_duration
   before_save :calculate_pace
-  after_save :create_total
+  after_save :create_or_update_total
   after_destroy :subtract_from_total  
 
   validates :date, presence: true
@@ -47,7 +47,7 @@ class Activity < ApplicationRecord
     self.duration = calculated_duration unless calculated_duration == 0
   end
 
-  def create_total
+  def create_or_update_total
     week = self.date.to_date.cweek
     year = self.date.to_date.cwyear
     starting_on = Date.commercial(year, week)
