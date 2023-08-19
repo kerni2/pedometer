@@ -8,6 +8,7 @@ confirmed_user_activity_<%= i %>:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: easy
 <% end %>
@@ -20,6 +21,7 @@ another_confirmed_user_activity_<%= i %>:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: easy
 <% end %>
@@ -31,6 +33,7 @@ confirmed_user_with_searchable_activity_1:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: easy
   category: run
@@ -42,6 +45,7 @@ confirmed_user_with_searchable_activity_2:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: moderate
   category: long_run
@@ -53,6 +57,7 @@ confirmed_user_with_searchable_activity_3:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: hard
   category: workout
@@ -64,6 +69,7 @@ confirmed_user_with_searchable_activity_4:
   minutes: <%= rand(1..59) %>
   seconds: <%= rand(1..59) %>
   distance: <%= rand(1..20) %>
+  distance_in_miles: <%= rand(1..20) %>
   unit: miles
   difficulty: hard
   category: race

@@ -58,7 +58,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :kilometers
     @activity.duration = 3600
     @activity.save
-    pace = @activity.duration / ( @activity.distance * 0.6213712 )
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace
   end
@@ -68,7 +68,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :meters
     @activity.duration = 3600
     @activity.save
-    pace = @activity.duration / ( @activity.distance * 0.0006213711985 )
+    pace = @activity.duration /  @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace
   end
@@ -78,7 +78,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :yards
     @activity.duration = 3600
     @activity.save
-    pace = @activity.duration / ( @activity.distance * 0.0005681818239083977 )
+    pace = @activity.duration /  @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace
   end
