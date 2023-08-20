@@ -114,10 +114,7 @@ class ActivityTest < ActiveSupport::TestCase
   end
 
   test "should create total record when saved" do
-    @user = users(:confirmed_user)
-    week = Time.zone.now.to_date.cweek
-    year = Time.zone.now.to_date.cwyear
-    starting_on = Date.commercial(year, week)
+    starting_on = Time.zone.now.beginning_of_week
 
     7.times do |i|
       @user.activities.create(date: starting_on + i.days, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
