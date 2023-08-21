@@ -1,0 +1,29 @@
+<h2>Activities</h2>
+<% unless @totals.empty? %>
+
+  <div class="table-responsive" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><strong>Date:</strong></th>
+          <th scope="col"><strong>Distance:</strong></th>
+          <th scope="col"><strong>Duration:</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @totals.each do |total| %>
+        <tr>
+          <th><%= total.starting_on.strftime("%D") %> through <%= total.starting_on.end_of_week.strftime("%D") %></th>
+          <th><%= total.distance %></th>
+          <th><%= total.duration%></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+<% else %>
+  <p><%= link_to "Add your first activity", new_activity_path %></p>
+<% end %>
