@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :user
+  has_one :shoe
 
   enum category: [:run, :long_run, :workout, :race, :other]
   enum difficulty: [:easy, :moderate, :hard]
