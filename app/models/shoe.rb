@@ -1,5 +1,5 @@
 class Shoe < ApplicationRecord
-  belongs_to :activity, optional: true
+  has_many :activities
   belongs_to :user
 
   validates :name, presence: true
