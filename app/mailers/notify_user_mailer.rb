@@ -1,8 +1,9 @@
 class NotifyUserMailer < ApplicationMailer
-  default from: 'notifications@pedometer.com'
+  def shoe_mileage_reached(shoe)
+    @shoe = shoe
+    @user = @shoe.user
+    @message = "Your #{@shoe.name} has #{@shoe.distance_in_miles} miles on it."
 
-  def shoe_mileage_reached(user)
-    @user = user
-    mail(to: @user.email, subject: 'Welcome to Pedometer Site')
+    mail to: @user.email, subject: "Time to change your shoes!"
   end
 end

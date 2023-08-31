@@ -1,12 +1,16 @@
 require "test_helper"
 
 class NotifyUserMailerTest < ActionMailer::TestCase
-  test "shoe_limit_reached" do
-    mail = NotifyUserMailer.shoe_limit_reached
-    assert_equal "Shoe limit reached", mail.subject
-    assert_equal ["to@example.org"], mail.to
-    assert_equal ["from@example.com"], mail.from
-    assert_match "Hi", mail.body.encoded
+  def setup
+    @shoe = shoes(:confirmed_user_with_shoes_shoe)
   end
 
+  test "shoe_mileage_reached" do
+    mail = NotifyUserMailer.shoe_mileage_reached(@shoe)
+    assert_equal "Time to change your shoes!", mail.subject
+    assert_equal [@shoe.user.email], mail.to
+    assert_equal ["notifications@pedometer.com"], mail.from
+    assert_match @shoe.name, mail.body.encoded
+    assert_match @shoe.distance_in_miles.to_s, mail.body.encoded
+  end
 end
