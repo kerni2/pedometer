@@ -5,6 +5,7 @@ class ShoesTest < ApplicationSystemTestCase
 
   def setup
     @user = users(:confirmed_user_with_shoe)
+    @shoe = shoes(:confirmed_user_with_shoes_shoe)
   end
 
   test "creating a new shoe" do
@@ -17,5 +18,27 @@ class ShoesTest < ApplicationSystemTestCase
     click_button "Create Shoe"
 
     assert_text "Shoe Created"    
+  end
+
+  test "updating a shoe" do
+    sign_in @user
+
+    visit edit_shoe_path(@shoe)
+    fill_in "Name", with: "Update Shoe"
+    check "Retired"
+    click_button "Update Shoe"
+
+    assert_text "Shoe Update"
+  end
+
+  test "deleting a shoe" do
+    sign_in @user
+
+    visit edit_shoe_path(@shoe)
+    accept_alert do
+      click_link "Destroy"
+    end
+
+    assert_text "Shoe Deleted"
   end
 end
