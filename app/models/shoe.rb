@@ -7,6 +7,8 @@ class Shoe < ApplicationRecord
 
   after_save :notify_user, if: :shoe_mileage_reached?
 
+  scope :ordered, -> { order(retired: :asc).order(name: :asc) }
+
   private
 
   def notify_user
