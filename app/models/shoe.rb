@@ -23,6 +23,6 @@ class Shoe < ApplicationRecord
   end
 
   def shoe_mileage_reached?
-    !self.notified? && self.distance_in_miles >= self.allowed_distance_in_miles
+    !self.notified? && !self.allowed_distance_in_miles.nil? && self.distance_in_miles >= self.allowed_distance_in_miles
   end
 end
