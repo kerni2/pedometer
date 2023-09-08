@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
   belongs_to :shoe, optional: true
 
   scope :ordered, -> { order(date: :desc) }
-  
+
   enum category: [:run, :long_run, :workout, :race, :other]
   enum difficulty: [:easy, :moderate, :hard]
   enum unit: [:miles, :kilometers, :meters, :yards]
@@ -66,10 +66,10 @@ class Activity < ApplicationRecord
     .where("date <= ?", starting_on.end_of_week)
     .where(user: self.user)
 
-    total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+    distance_in_miles = @activities.sum(:distance_in_miles) unless @activities.empty?
     total_duration = @activities.sum(:duration) unless @activities.empty?
 
-    @total.distance = total_distance unless total_distance.nil?
+    @total.distance_in_miles = distance_in_miles unless distance_in_miles.nil?
     @total.duration = total_duration unless total_duration.nil?
     @total.save
   end
